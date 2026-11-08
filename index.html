@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#080d1b">
+<title>ZENO — Central de Comando</title>
+<style>
+:root{--bg:#080d1b;--panel:#111a2d;--panel2:#17233a;--line:#263653;--text:#edf4ff;--muted:#9aabc5;--cyan:#52d8f5;--blue:#6687ff}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 80% 0%,#14284a 0,transparent 38%),var(--bg);color:var(--text);font:15px system-ui,-apple-system,Segoe UI,sans-serif}
+.wrap{max-width:900px;margin:auto;padding:22px 16px 48px}.top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:24px}
+.brand{display:flex;align-items:center;gap:11px}.logo{width:44px;height:44px;border-radius:14px;background:linear-gradient(135deg,var(--cyan),var(--blue));display:grid;place-items:center;color:#06101e;font-weight:900;font-size:20px;box-shadow:0 0 25px #52d8f544}
+h1{font-size:22px;margin:0;letter-spacing:2px}.sub{color:var(--muted);font-size:12px;margin-top:2px}.status{border:1px solid #24536a;color:#8eeaff;background:#0d2534;padding:7px 10px;border-radius:20px;font-size:11px}
+.hero{padding:23px;border:1px solid var(--line);border-radius:22px;background:linear-gradient(135deg,#14223a,#10182a);margin-bottom:18px}
+.eyebrow{color:var(--cyan);font-size:11px;letter-spacing:2px;font-weight:700}.hero h2{font-size:26px;line-height:1.15;margin:9px 0}.hero p{color:var(--muted);margin:0 0 17px;line-height:1.5}
+.command{display:flex;gap:8px}.command input{min-width:0;flex:1;background:#080f1e;border:1px solid #314563;color:var(--text);padding:13px;border-radius:12px;font-size:14px}.btn{border:0;border-radius:12px;padding:12px 15px;background:linear-gradient(135deg,var(--cyan),#7c91ff);color:#06101e;font-weight:800;cursor:pointer}
+.section{margin:24px 0 12px;display:flex;justify-content:space-between;align-items:center}.section h3{margin:0;font-size:16px}.hint{font-size:12px;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.card{background:var(--panel);border:1px solid var(--line);border-radius:17px;padding:15px;min-height:135px}
+.card .ico{font-size:22px}.card h4{margin:10px 0 4px;font-size:14px}.card p{margin:0;color:var(--muted);font-size:12px;line-height:1.4}
+.channel{display:flex;align-items:center;gap:11px}.channel .bubble{width:38px;height:38px;display:grid;place-items:center;border-radius:12px;background:var(--panel2);font-size:18px}.channel strong{display:block;font-size:13px}.channel small{color:var(--muted);font-size:11px}
+.list{display:grid;gap:9px}.item{background:var(--panel);border:1px solid var(--line);padding:13px;border-radius:13px;display:flex;justify-content:space-between;gap:10px;align-items:center}.item span{font-size:13px}.tag{font-size:10px;color:#a9e9ff;background:#123044;padding:5px 8px;border-radius:20px;white-space:nowrap}
+textarea{width:100%;min-height:95px;resize:vertical;background:#080f1e;border:1px solid #314563;color:var(--text);border-radius:12px;padding:12px;font:14px system-ui}
+.output{margin-top:10px;padding:13px;border-radius:12px;background:#0b1425;border:1px solid var(--line);color:#dce8fa;white-space:pre-wrap;line-height:1.5;font-size:13px;min-height:48px}
+footer{margin-top:25px;color:var(--muted);font-size:11px;line-height:1.5;text-align:center}
+@media(min-width:650px){.grid{grid-template-columns:repeat(4,minmax(0,1fr))}.hero{padding:30px}.hero h2{font-size:32px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+ <div class="brand"><div class="logo">Z</div><div><h1>ZENO</h1><div class="sub">CENTRAL DE COMANDO</div></div></div>
+ <div class="status">● PROTÓTIPO 1.0</div>
+</header>
+<section class="hero">
+ <div class="eyebrow">SEU ASSISTENTE DE CONTEÚDO</div>
+ <h2>O que vamos criar hoje?</h2>
+ <p>Organize ideias, roteiros e tarefas dos seus quatro canais em um só lugar.</p>
+ <div class="command"><input id="cmd" placeholder="Ex.: criar roteiro sobre inteligência artificial"><button class="btn" onclick="runCommand()">Enviar</button></div>
+ <div class="output" id="answer">Digite um comando para começar. Nesta versão, o ZENO organiza sua solicitação como tarefa.</div>
+</section>
+<div class="section"><h3>Seus canais</h3><span class="hint">4 projetos</span></div>
+<div class="grid">
+ <div class="card"><div class="channel"><div class="bubble">💻</div><div><strong>ZENO TECH</strong><small>YouTube · Tecnologia e IA</small></div></div><p style="margin-top:13px">Ideias, explicações e novidades de tecnologia.</p></div>
+ <div class="card"><div class="channel"><div class="bubble">⚡</div><div><strong>ZENO MOTION</strong><small>TikTok · Motivação</small></div></div><p style="margin-top:13px">Mensagens positivas e vídeos curtos.</p></div>
+ <div class="card"><div class="channel"><div class="bubble">🔎</div><div><strong>ZENO FACTS</strong><small>Instagram · Curiosidades</small></div></div><p style="margin-top:13px">Fatos interessantes com fontes verificáveis.</p></div>
+ <div class="card"><div class="channel"><div class="bubble">📖</div><div><strong>ZENO STORIES</strong><small>Facebook · Histórias</small></div></div><p style="margin-top:13px">Histórias originais e narrativas curtas.</p></div>
+</div>
+<div class="section"><h3>Ferramentas</h3><span class="hint">Painel inicial</span></div>
+<div class="grid">
+ <div class="card"><div class="ico">✍️</div><h4>Roteiros</h4><p>Planejar começo, desenvolvimento e final do vídeo.</p></div>
+ <div class="card"><div class="ico">🎬</div><h4>Produção</h4><p>Preparar narração, cenas, imagens e legendas.</p></div>
+ <div class="card"><div class="ico">🗓️</div><h4>Calendário</h4><p>Organizar os 2 vídeos diários de cada canal.</p></div>
+ <div class="card"><div class="ico">📊</div><h4>Resultados</h4><p>Registrar visualizações e desempenho.</p></div>
+</div>
+<div class="section"><h3>Próximas etapas</h3><span class="hint">Construção do ZENO</span></div>
+<div class="list">
+ <div class="item"><span>1. Definir o fluxo de criação de vídeos</span><span class="tag">Próximo</span></div>
+ <div class="item"><span>2. Escolher ferramentas de edição e narração</span><span class="tag">Pendente</span></div>
+ <div class="item"><span>3. Testar integrações de publicação autorizadas</span><span class="tag">Pendente</span></div>
+ <div class="item"><span>4. Adicionar análise de desempenho</span><span class="tag">Pendente</span></div>
+</div>
+<div class="section"><h3>Rascunho de ideia</h3></div>
+<textarea id="idea" placeholder="Anote aqui uma ideia de vídeo..."></textarea>
+<div style="display:flex;justify-content:flex-end;margin-top:9px"><button class="btn" onclick="saveIdea()">Salvar rascunho</button></div>
+<div class="output" id="saved">Nenhum rascunho salvo nesta sessão.</div>
+<footer>Protótipo demonstrativo. Ainda não gera vídeos nem publica automaticamente. As conexões com ferramentas e contas serão configuradas e testadas separadamente.</footer>
+</div>
+<script>
+function runCommand(){
+ const v=document.getElementById('cmd').value.trim(), out=document.getElementById('answer');
+ if(!v){out.textContent='Escreva um comando primeiro.';return}
+ out.textContent='TAREFA RECEBIDA\\n'+v+'\\n\\nPróximo passo: transformar esse pedido em roteiro, cenas, narração e legenda. Esta versão é um protótipo de interface e ainda não usa uma IA externa.';
+}
+function saveIdea(){
+ const v=document.getElementById('idea').value.trim(), out=document.getElementById('saved');
+ if(!v){out.textContent='Escreva uma ideia antes de salvar.';return}
+ try{localStorage.setItem('zeno_draft',v);out.textContent='Rascunho salvo neste navegador:\\n'+v}catch(e){out.textContent='Rascunho preparado:\\n'+v}
+}
+</script>
+</body></html>
